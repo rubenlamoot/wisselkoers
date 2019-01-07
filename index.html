@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Bootstrap template with sass">
-    <meta name="keywords" content="CSS, SCSS, bootstrap">
+    <meta name="description" content="valuta converter">
+    <meta name="keywords" content="valuta euro dollar converter">
     <meta name="author" content="Ruben Lamoot">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -17,24 +17,23 @@
         <div class="row">
             <div class="col md-6 my-5">
                 <label>Van</label>
-                <select name="" id="" class="form-control">
-                    <option value="">euro</option>
-                    <option value="">usdollar</option>
+                <select v-model="van" name="" id="" class="form-control">
+                    <option :value="eenValuta.id" v-for="eenValuta in formatValuta">{{eenValuta.currencyName}}</option>
+
                 </select>
             </div>
             <div class="col md-6 my-5">
                 <label>Naar</label>
-                <select name="" id="" class="form-control">
-                    <option value="">euro</option>
-                    <option value="">usdollar</option>
+                <select v-model="naar" name="" id="" class="form-control">
+                    <option :value="eenValuta.id" v-for="eenValuta in formatValuta">{{eenValuta.currencyName}}</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <input type="text" placeholder="bedrag" class="form-control my-5">
+                <input v-model="bedrag" type="text" placeholder="bedrag" class="form-control my-5">
                 <div class="text-center">
-                    <button class="btn-primary">
+                    <button v-on:click="convertValuta" class="btn btn-primary">
                         Convert
                     </button>
                 </div>
@@ -42,9 +41,9 @@
         </div>
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <div class="text-center display-2 mt-5">
-                    25.05
-                </div>
+                <h1 class="text-center display-2 mt-5">
+                    {{ berekenResultaat }}
+                </h1>
             </div>
         </div>
     </div>
@@ -57,5 +56,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="js/mijn.js"></script>
 </body>
 </html>
